@@ -3,7 +3,7 @@
 #include "Base.h"
 #include <iostream>
 #include <cstring> 
-
+#include <fstream>
 class Airplane: public Base{
     
     public:
@@ -29,7 +29,8 @@ class Airplane: public Base{
     void setDim(const char* dim);
     void setCit(const char* c);
     void setCargoVolume(double vol);
-
+    void saveToFileStream(std::ofstream& file) const override;
+    void loadFromFileStream(std::ifstream& file) override;
     private:
     char* type;
     double cargoVolume;

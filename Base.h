@@ -2,6 +2,7 @@
 #define BASE_H
 #include <iostream>
 #include <cstring> 
+#include <fstream>
 using namespace std;
 class Base{
 protected:
@@ -25,5 +26,7 @@ public:
     virtual const char* getType() const = 0;
     const char* getName() const;
     void setName(const char* n);
+    virtual void saveToFileStream(std::ofstream& file) const = 0;
+    virtual void loadFromFileStream(std::ifstream& file) = 0;
 };
 #endif

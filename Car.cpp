@@ -163,3 +163,25 @@ const char* Car::getType() const {
     return "Car";
 }
 
+void Car::saveToFileStream(std::ofstream& file) const {
+    file << getType() << "\n"
+         << (getName() ? getName() : "None") << "\n"
+         << year << "\n"
+         << (brand ? brand : "None") << "\n"
+         << (model ? model : "None") << "\n"
+         << (deliveryInfo ? deliveryInfo : "None") << "\n"
+         << cargoVolume << "\n";
+}
+
+void Car::loadFromFileStream(std::ifstream& file) {
+    char buf[256];
+    int y;
+    double vol;
+    
+    file >> buf; setName(buf);
+    file >> y; setYear(y);
+    file >> buf; setBrand(buf);
+    file >> buf; setModel(buf);
+    file >> buf; setDeliveryInfo(buf);
+    file >> vol; setCargoVolume(vol);
+}

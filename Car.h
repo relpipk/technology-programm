@@ -3,6 +3,7 @@
 #include "Base.h"
 #include <iostream>
 #include <cstring> 
+#include <fstream>
 class Car : public Base{
     private:
     int year;
@@ -33,6 +34,7 @@ class Car : public Base{
     void setModel(const char* mod);
     void setDeliveryInfo(const char* DInf);
     void setCargoVolume(double vol);
-
+    void saveToFileStream(std::ofstream& file) const override;
+    void loadFromFileStream(std::ifstream& file) override;
 };
 #endif

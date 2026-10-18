@@ -137,3 +137,21 @@ Base* Airplane::clone() const {
 const char* Airplane::getType() const {
     return "Airplane";
 }
+void Airplane::saveToFileStream(std::ofstream& file) const {
+    file << getType() << "\n"
+         << (getName() ? getName() : "None") << "\n"
+         << (type ? type : "None") << "\n"
+         << cargoVolume << "\n"
+         << (dimensions ? dimensions : "None") << "\n"
+         << (cities ? cities : "None") << "\n";
+}
+
+void Airplane::loadFromFileStream(std::ifstream& file) {
+    char buf[256];
+    double vol;
+    file >> buf; setName(buf);
+    file >> buf; setType(buf);
+    file >> vol; setCargoVolume(vol);
+    file >> buf; setDim(buf);
+    file >> buf; setCit(buf);
+}

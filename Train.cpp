@@ -115,3 +115,23 @@ Base* Train::clone() const {
 const char* Train::getType() const {
     return "Train";
 }
+void Train::saveToFileStream(std::ofstream& file) const {
+    file << getType() << "\n"
+         << (getName() ? getName() : "None") << "\n"
+         << year << "\n"
+         << (route ? route : "None") << "\n"
+         << vagonCount << "\n"
+         << cargoVolume << "\n";
+}
+
+void Train::loadFromFileStream(std::ifstream& file) {
+    char buf[256];
+    int y, w;
+    double vol;
+    
+    file >> buf; setName(buf);
+    file >> y; setYear(y);
+    file >> buf; setRoute(buf);
+    file >> w; setVagonCnt(w);
+    file >> vol; setCargoVolume(vol);
+}
